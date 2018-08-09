@@ -1,12 +1,14 @@
 // Enemies our player must avoid
 class Enemy{
-    constructor(x=300,y=150){
+    constructor(x=300,y=150, speed){
         this.sprite = 'images/enemy-bug.png';
         this.x=x;
         this.y=y
+        this.speed=speed;
+
     }
     update(dt){
-        this.x+=100*dt;
+        this.x+=this.speed*dt;
     }
 
     render(){
@@ -31,30 +33,30 @@ class Player{
     };
 
     handleInput(dt){
-        if(this.x<500 && this.x>50){
+
         switch(dt){
             case "left":
-                this.x-=100;
+                this.x-=85;
                  break;
             case "down":
-                this.y+=100;
+                this.y+=85;
                 break;
             case "right":
-                this.x+=100;
+                this.x+=85;
                 break;
             case "up":
-                this.y-=100;
+                this.y-=85;
                 break;
         };
     };
-    };
+
 
 };
 
 var player= new Player();
-const bug_one=new Enemy();
-const bug_two=new Enemy();
-const bug_three=new Enemy();
+const bug_one=new Enemy(0,60,50);
+const bug_two=new Enemy(0,145,100);
+const bug_three=new Enemy(0,230,150);
 var allEnemies = [bug_one, bug_two, bug_three];
 
 // This listens for key presses and sends the keys to your
