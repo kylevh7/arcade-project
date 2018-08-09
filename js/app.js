@@ -1,11 +1,12 @@
 // Enemies our player must avoid
 class Enemy{
-    constructor(x,y){
+    constructor(x=300,y=150){
         this.sprite = 'images/enemy-bug.png';
-        this.x=300;
-        this.y=60;
+        this.x=x;
+        this.y=y
     }
     update(dt){
+        this.x+=100*dt;
     }
 
     render(){
@@ -15,12 +16,14 @@ class Enemy{
 };
 
 class Player{
-    constructor(x=200, y=400){
+    constructor(x=200, y=200){
         this.sprite = 'images/char-cat-girl.png';
         this.x=200;
         this.y=400;
     }
     update(dt){
+
+
     };
 
     render(){
@@ -28,26 +31,32 @@ class Player{
     };
 
     handleInput(dt){
+        if(this.x<500 && this.x>50){
         switch(dt){
             case "left":
-                this.x-=50;
-                break;
+                this.x-=100;
+                 break;
             case "down":
-                this.y+=50;
+                this.y+=100;
                 break;
             case "right":
-                this.x+=50;
+                this.x+=100;
                 break;
             case "up":
-                this.y-=50;
+                this.y-=100;
                 break;
         };
+    };
     };
 
 };
 
 var player= new Player();
-var allEnemies = [new Enemy()];
+const bug_one=new Enemy();
+const bug_two=new Enemy();
+const bug_three=new Enemy();
+var allEnemies = [bug_one, bug_two, bug_three];
+
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
