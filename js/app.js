@@ -5,10 +5,19 @@ class Enemy{
         this.x=x;
         this.y=y
         this.speed=100*Math.random();
+        this.reset=function(){
+            if(this.x>505){
+            this.x=-50;
+            this.speed=50+this.speed*Math.random();
+        };
+        }
 
-    }
+    };
+
+
     update(dt){
         this.x+=this.speed*dt;
+        this.reset();
     }
 
     render(){
@@ -18,12 +27,24 @@ class Enemy{
 };
 
 class Player{
-    constructor(x=200, y=200){
+    constructor(x=200, y=400){
         this.sprite = 'images/char-cat-girl.png';
-        this.x=200;
-        this.y=400;
+        this.x=x;
+        this.y=y;
+        this.boundry=function(){
+            if(this.x>500){
+                this.x-=101;
+            }else if(this.x<-50){
+                this.x+=101;
+            }else if(this.y>400){
+                this.y-=85;
+            }else if(this.y<-50){
+                this.y+=85;
+            }
+        }
     }
     update(dt){
+        this.boundry();
 
 
     };
@@ -36,13 +57,13 @@ class Player{
 
         switch(dt){
             case "left":
-                this.x-=85;
+                this.x-=101;
                  break;
             case "down":
                 this.y+=85;
                 break;
             case "right":
-                this.x+=85;
+                this.x+=101;
                 break;
             case "up":
                 this.y-=85;
