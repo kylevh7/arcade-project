@@ -1,4 +1,4 @@
-// Enemies our player must avoid
+//Class to build the enemy array
 class Enemy {
     constructor(x = 300, y = 150) {
         this.sprite = 'images/enemy-bug.png';
@@ -16,8 +16,8 @@ class Enemy {
     update(dt) {
         this.x += this.speed * dt;
         this.reset();
+        //collision detection send player back to starting line
         if (player.x < this.x + 80 && player.x + 80 > this.x && player.y < this.y + 60 && player.y + 60 > this.y) {
-            console.log("collision");
             player.x = 200;
             player.y = 400;
         }
@@ -27,13 +27,13 @@ class Enemy {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 }
-
+//class to build players in a default starting position
 class Player {
     constructor(x = 200, y = 400) {
         this.sprite = 'images/char-cat-girl.png';
         this.x = x;
         this.y = y;
-
+//method to keep player in a boundry
         this.boundry = function() {
             if (this.x > 500) {
                 this.x -= 101;
@@ -48,13 +48,12 @@ class Player {
     }
     update(dt) {
         this.boundry();
+        //Announce winner, send back to start line
         if (this.y < -20) {
             this.x = 200;
             this.y = 400;
             setTimeout(function() {
-
                 alert("winner!!!");
-
             }, 100);
         }
     }
@@ -62,7 +61,7 @@ class Player {
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
-
+//instructions for keypress listeners
     handleInput(dt) {
         switch (dt) {
             case "left":
