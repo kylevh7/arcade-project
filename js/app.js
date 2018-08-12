@@ -55,7 +55,7 @@ class Player {
         this.boundry();
         if (this.y < -20) {
             setTimeout(function() {
-                alert("winner");
+                alert("winner!!!");
                 location.reload();
             }, 500);
 
