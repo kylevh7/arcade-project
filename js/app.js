@@ -8,11 +8,9 @@ class Enemy {
         this.reset = function() {
             if (this.x > 505) {
                 this.x = -50;
-                this.speed = 50 + this.speed * Math.random();
+                this.speed = 150 + this.speed * Math.random();
             }
-
         }
-
     }
 
     update(dt) {
@@ -23,14 +21,11 @@ class Enemy {
             player.x = 200;
             player.y = 400;
         }
-
-
     }
 
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
-
 }
 
 class Player {
@@ -54,11 +49,13 @@ class Player {
     update(dt) {
         this.boundry();
         if (this.y < -20) {
+            this.x = 200;
+            this.y = 400;
             setTimeout(function() {
-                alert("winner!!!");
-                location.reload();
-            }, 500);
 
+                alert("winner!!!");
+
+            }, 100);
         }
     }
 
@@ -82,8 +79,6 @@ class Player {
                 break;
         }
     }
-
-
 }
 
 var player = new Player();
