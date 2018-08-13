@@ -1,4 +1,6 @@
+"use strict";
 //Class to build the enemy array
+
 class Enemy {
     constructor(x = 300, y = 150) {
         this.sprite = 'images/enemy-bug.png';
